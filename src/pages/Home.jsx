@@ -1,4 +1,9 @@
 import React from 'react';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -9,14 +14,37 @@ import Pagination from '../components/Pagination';
 import { SearchContext } from '../App';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
+
+  const [isReverseSort, setIsReverseSort] = React.useState(false);
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
+
+  const onClickCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
+
   const { searchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  const [categoryId, setcategoryId] = React.useState(0);
-  const [sortType, setSortType] = React.useState({ name: 'Популярности', sortProperty: 'rating' });
-  const [isReverseSort, setIsReverseSort] = React.useState(false);
-  const [currentPage, setCurrentPage] = React.useState(1);
+  // React.useEffect(() => {
+  //   if (window.location.search) {
+  //     const params = qs.parse(window.location.search.substring(1));
+
+  //     // const sorter = list.find((obj) => obj.sortProperty === params.sortProperty);
+
+  //     dispatch(
+  //       setFilters({
+  //         ...params,
+  //       })
+  //     );
+  //   }
+  // }, []);
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -41,7 +69,7 @@ const Home = () => {
 
     filteredItems.sort(function (a, b) {
       // По популярности
-      if (sortType.sortProperty === 'rating') {
+      if (sort.sortProperty === 'rating') {
         if (isReverseSort) {
           return b.rating - a.rating;
         }
@@ -49,7 +77,7 @@ const Home = () => {
       }
 
       // По цене
-      if (sortType.sortProperty === 'price') {
+      if (sort.sortProperty === 'price') {
         if (isReverseSort) {
           return b.price - a.price;
         }
@@ -57,7 +85,7 @@ const Home = () => {
       }
 
       // По Алфавиту
-      if (sortType.sortProperty === 'title') {
+      if (sort.sortProperty === 'title') {
         if (isReverseSort) {
           return b.title - a.title;
         }
@@ -77,7 +105,16 @@ const Home = () => {
     setIsLoading(false);
 
     window.scrollTo(0, 0);
-  }, [categoryId, sortType, isReverseSort, currentPage, searchValue]);
+  }, [categoryId, sort.sortProperty, isReverseSort, currentPage, searchValue]);
+
+  React.useEffect(() => {
+    const queryString = qs.stringify({
+      sortProperty: sort.sortProperty,
+      categoryId,
+      currentPage,
+    });
+    navigate(`?${queryString}`);
+  }, [categoryId, sort.sortProperty, currentPage]);
 
   const pizzasItems = items
     .filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
@@ -88,18 +125,13 @@ const Home = () => {
     <>
       <div className='content'>
         <div className='content__top'>
-          <Categories value={categoryId} onClickCategory={(i) => setcategoryId(i)} />
-          <Sort
-            value={sortType}
-            onClickSort={(i) => setSortType(i)}
-            isReverseSort={isReverseSort}
-            onClickReverse={(i) => setIsReverseSort(i)}
-          />
+          <Categories value={categoryId} onClickCategory={onClickCategory} />
+          <Sort isReverseSort={isReverseSort} onClickReverse={(i) => setIsReverseSort(i)} />
         </div>
         <h2 className='content__title'>Все пиццы</h2>
         <div className='content__items'>{isLoading ? skeletons : pizzasItems}</div>
 
-        {searchValue ? '' : <Pagination onChangePage={(number) => setCurrentPage(number)} />}
+        {searchValue ? '' : <Pagination currentPage={currentPage} onChangePage={onChangePage} />}
       </div>
     </>
   );

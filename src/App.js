@@ -1,11 +1,11 @@
 import React from 'react';
-// import { Outlet } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+// import { Route, Routes } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Cart from './pages/Cart';
 import Header from './components/Header';
-import NotFoundBlock from './components/NotFoundBlock';
+// import Home from './pages/Home';
+// import Cart from './pages/Cart';
+// import NotFoundBlock from './components/NotFoundBlock';
 
 import './scss/app.scss';
 
@@ -19,12 +19,12 @@ function App() {
       <SearchContext.Provider value={{ searchValue, setSearchValue }}>
         <Header />
         <div className='container'>
-          {/* <Outlet /> */}
-          <Routes>
+          <Outlet />
+          {/* <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='*' element={<NotFoundBlock />} />
-          </Routes>
+          </Routes> */}
         </div>
       </SearchContext.Provider>
     </div>

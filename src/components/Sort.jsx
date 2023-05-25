@@ -1,15 +1,21 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSort } from '../redux/slices/filterSlice';
 
-function Sort({ value, onClickSort, isReverseSort, onClickReverse }) {
+export const list = [
+  { name: 'популярности', sortProperty: 'rating' },
+  { name: 'цене', sortProperty: 'price' },
+  { name: ' ̶а̶л̶ф̶а̶в̶и̶т̶у̶', sortProperty: 'title' },
+];
+
+function Sort({ isReverseSort, onClickReverse }) {
+  const dispatch = useDispatch();
+  const sort = useSelector((state) => state.filter.sort);
+
   const [sortIsVisible, setSortIsVisible] = React.useState(false);
-  const list = [
-    { name: 'популярности', sortProperty: 'rating' },
-    { name: 'цене', sortProperty: 'price' },
-    { name: ' ̶а̶л̶ф̶а̶в̶и̶т̶у̶', sortProperty: 'title' },
-  ];
 
-  const onClickSortItem = (i) => {
-    onClickSort(i);
+  const onClickSortItem = (obj) => {
+    dispatch(setSort(obj));
     setSortIsVisible(!sortIsVisible);
   };
 
@@ -29,7 +35,7 @@ function Sort({ value, onClickSort, isReverseSort, onClickReverse }) {
           </svg>
           <b>Сортировка по:</b>
         </div>
-        <span onClick={() => setSortIsVisible(!sortIsVisible)}>{value.name}</span>
+        <span onClick={() => setSortIsVisible(!sortIsVisible)}>{sort.name}</span>
       </div>
       {sortIsVisible && (
         <div className='sort__popup'>
@@ -38,7 +44,7 @@ function Sort({ value, onClickSort, isReverseSort, onClickReverse }) {
               <li
                 key={i}
                 onClick={() => onClickSortItem(obj)}
-                className={value.sortProperty === obj.sortProperty ? 'active' : ''}
+                className={sort.sortProperty === obj.sortProperty ? 'active' : ''}
               >
                 {obj.name}
               </li>
