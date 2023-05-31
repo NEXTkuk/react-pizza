@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSort } from '../redux/slices/filterSlice';
+import { type } from '@testing-library/user-event/dist/type';
 
 export const list = [
   { name: 'популярности', sortProperty: 'rating' },
@@ -11,6 +12,7 @@ export const list = [
 function Sort({ isReverseSort, onClickReverse }) {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
+  const sortRef = React.useRef();
 
   const [sortIsVisible, setSortIsVisible] = React.useState(false);
 
@@ -23,8 +25,20 @@ function Sort({ isReverseSort, onClickReverse }) {
     onClickReverse(!isReverseSort);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setSortIsVisible(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => document.body.removeEventListener('click', handleClickOutside);
+  }, []);
+
   return (
-    <div className='sort'>
+    <div ref={sortRef} className='sort'>
       <div className={isReverseSort ? 'sort__label sort__reverse' : 'sort__label'}>
         <div onClick={toggleSort}>
           <svg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'>

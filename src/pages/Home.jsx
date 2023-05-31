@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 
 import Categories from '../components/Categories';
-import Sort from '../components/Sort';
+import Sort, { list } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import LoadingBlock from '../components/PizzaBlock/LoadingBlock';
 import pizzas from '../assets/db.json';
@@ -16,9 +16,15 @@ import { SearchContext } from '../App';
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
 
+  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const [isReverseSort, setIsReverseSort] = React.useState(false);
+
+  const { searchValue } = React.useContext(SearchContext);
+  const [items, setItems] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number));
@@ -28,25 +34,7 @@ const Home = () => {
     dispatch(setCategoryId(id));
   };
 
-  const { searchValue } = React.useContext(SearchContext);
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  // React.useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = qs.parse(window.location.search.substring(1));
-
-  //     // const sorter = list.find((obj) => obj.sortProperty === params.sortProperty);
-
-  //     dispatch(
-  //       setFilters({
-  //         ...params,
-  //       })
-  //     );
-  //   }
-  // }, []);
-
-  React.useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoading(true);
 
     // Костыль под осуждением
@@ -93,7 +81,6 @@ const Home = () => {
       }
       return 0;
     });
-    // console.log(afterSort);
 
     // Замена fetch API
     // Фикс поиска
@@ -103,18 +90,49 @@ const Home = () => {
       setItems(filteredItems);
     }
     setIsLoading(false);
+  };
 
-    window.scrollTo(0, 0);
-  }, [categoryId, sort.sortProperty, isReverseSort, currentPage, searchValue]);
-
+  // Если первого рендер был и параметры изменились, то вшиваем URL
   React.useEffect(() => {
-    const queryString = qs.stringify({
-      sortProperty: sort.sortProperty,
-      categoryId,
-      currentPage,
-    });
-    navigate(`?${queryString}`);
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
   }, [categoryId, sort.sortProperty, currentPage]);
+
+  // Если был первый рендер то проверяем URL параметры и сохраняем в Redux
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  // Если был первый рендер, то запрашиваем пиццы
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+
+    if (isSearch.current) {
+      fetchPizzas();
+    }
+
+    isSearch.current = false;
+  }, [categoryId, sort.sortProperty, isReverseSort, currentPage, searchValue]);
 
   const pizzasItems = items
     .filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
