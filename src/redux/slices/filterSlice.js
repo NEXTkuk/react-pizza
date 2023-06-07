@@ -7,6 +7,7 @@ const initialState = {
     name: 'популярности',
     sortProperty: 'rating',
   },
+  reverseSort: false,
 };
 
 const filterSlice = createSlice({
@@ -27,9 +28,12 @@ const filterSlice = createSlice({
       state.categoryId = Number(action.payload.categoryId);
       state.currentPage = Number(action.payload.currentPage);
     },
+    setReverseSort(state, action) {
+      state.reverseSort = action.payload;
+    },
   },
 });
 
-export const { setCategoryId, setSort, setCurrentPage, setFilters } = filterSlice.actions;
+export const { setCategoryId, setSort, setCurrentPage, setFilters, setReverseSort } = filterSlice.actions;
 
 export default filterSlice.reducer;

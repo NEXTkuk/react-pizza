@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSort } from '../redux/slices/filterSlice';
-import { type } from '@testing-library/user-event/dist/type';
+import { setSort, setReverseSort } from '../redux/slices/filterSlice';
 
 export const list = [
   { name: 'популярности', sortProperty: 'rating' },
@@ -9,9 +8,9 @@ export const list = [
   { name: ' ̶а̶л̶ф̶а̶в̶и̶т̶у̶', sortProperty: 'title' },
 ];
 
-function Sort({ isReverseSort, onClickReverse }) {
+function Sort() {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.sort);
+  const { sort, reverseSort } = useSelector((state) => state.filter);
   const sortRef = React.useRef();
 
   const [sortIsVisible, setSortIsVisible] = React.useState(false);
@@ -22,7 +21,7 @@ function Sort({ isReverseSort, onClickReverse }) {
   };
 
   const toggleSort = () => {
-    onClickReverse(!isReverseSort);
+    dispatch(setReverseSort(!reverseSort));
   };
 
   React.useEffect(() => {
@@ -39,7 +38,7 @@ function Sort({ isReverseSort, onClickReverse }) {
 
   return (
     <div ref={sortRef} className='sort'>
-      <div className={isReverseSort ? 'sort__label sort__reverse' : 'sort__label'}>
+      <div className={reverseSort ? 'sort__label sort__reverse' : 'sort__label'}>
         <div onClick={toggleSort}>
           <svg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <path
