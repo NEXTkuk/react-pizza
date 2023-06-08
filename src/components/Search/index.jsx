@@ -1,17 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
+import { setSearchValue } from '../../redux/slices/filterSlice';
 
-import { SearchContext } from '../../App';
 import styles from './Search.module.scss';
 
 const Search = () => {
-  const [value, setValue] = React.useState('');
-  const { setSearchValue } = React.useContext(SearchContext);
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(''); // Локальный state для Debounce
   const inputRef = React.useRef();
 
   const updateSearchValue = React.useCallback(
     debounce((str) => {
-      setSearchValue(str);
+      dispatch(setSearchValue(str));
     }, 300),
     []
   );
@@ -23,7 +24,7 @@ const Search = () => {
 
   const onClickClear = () => {
     setValue('');
-    setSearchValue('');
+    dispatch(setSearchValue(''));
     inputRef.current.focus();
   };
 

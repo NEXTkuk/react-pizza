@@ -21,9 +21,7 @@ const Home = () => {
   const isMounted = React.useRef(false);
 
   const { items, status } = useSelector((state) => state.pizza);
-  const { categoryId, sort, currentPage, reverseSort } = useSelector((state) => state.filter);
-
-  const { searchValue } = React.useContext(SearchContext);
+  const { categoryId, sort, currentPage, reverseSort, searchValue } = useSelector((state) => state.filter);
 
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number));
