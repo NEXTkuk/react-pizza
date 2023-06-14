@@ -6,9 +6,10 @@ import Search from './Search';
 import logoSvg from '../assets/img/pizza-logo.svg';
 
 function Header() {
-  const location = useLocation();
   const { items, totalPrice } = useSelector(selectCart);
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const location = useLocation();
+
+  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
   return (
     <div className='header'>
@@ -22,7 +23,7 @@ function Header() {
             </div>
           </div>
         </Link>
-        <Search />
+        {location.pathname === '/' && <Search />}
         <div className='header__cart'>
           {location.pathname !== '/cart' && (
             <Link to='/cart' className='button button--cart'>

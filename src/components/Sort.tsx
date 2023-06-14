@@ -1,21 +1,26 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSort, setReverseSort, selectSort } from '../redux/slices/filterSlice';
+import { setSort, setReverseSort, selectSort, SortPropertyEnum } from '../redux/slices/filterSlice';
 
-export const list = [
-  { name: 'популярности', sortProperty: 'rating' },
-  { name: 'цене', sortProperty: 'price' },
-  { name: ' ̶а̶л̶ф̶а̶в̶и̶т̶у̶', sortProperty: 'title' },
+type SortList = {
+  name: string;
+  sortProperty: SortPropertyEnum;
+};
+
+export const list: SortList[] = [
+  { name: 'популярности', sortProperty: SortPropertyEnum.RATING },
+  { name: 'цене', sortProperty: SortPropertyEnum.PRICE },
+  { name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE },
 ];
 
-function Sort() {
+function SortPopup() {
   const dispatch = useDispatch();
   const { sort, reverseSort } = useSelector(selectSort);
-  const sortRef = React.useRef();
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
   const [sortIsVisible, setSortIsVisible] = React.useState(false);
 
-  const onClickSortItem = (obj) => {
+  const onClickSortItem = (obj: SortList) => {
     dispatch(setSort(obj));
     setSortIsVisible(!sortIsVisible);
   };
@@ -25,8 +30,8 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (event: globalThis.MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setSortIsVisible(false);
       }
     };
@@ -69,4 +74,4 @@ function Sort() {
   );
 }
 
-export default Sort;
+export default SortPopup;
