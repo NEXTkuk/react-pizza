@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setSort, setReverseSort, selectSort, SortPropertyEnum } from '../redux/slices/filterSlice';
+import { useDispatch } from 'react-redux';
+import { setSort, setReverseSort, SortPropertyEnum, Sort } from '../redux/slices/filterSlice';
 
 type SortList = {
   name: string;
@@ -13,9 +13,13 @@ export const list: SortList[] = [
   { name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE },
 ];
 
-function SortPopup() {
+type SortPopupProps = {
+  sort: Sort;
+  reverseSort: boolean;
+};
+
+const SortPopup: React.FC<SortPopupProps> = React.memo(({ sort, reverseSort }) => {
   const dispatch = useDispatch();
-  const { sort, reverseSort } = useSelector(selectSort);
   const sortRef = React.useRef<HTMLDivElement>(null);
 
   const [sortIsVisible, setSortIsVisible] = React.useState(false);
@@ -72,6 +76,6 @@ function SortPopup() {
       )}
     </div>
   );
-}
+});
 
 export default SortPopup;

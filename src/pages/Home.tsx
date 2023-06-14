@@ -27,9 +27,9 @@ const Home: React.FC = () => {
     dispatch(setCurrentPage(number));
   };
 
-  const onClickCategory = (id: number) => {
+  const onClickCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
   // Запрос на получения пицц
   const getPizzas = async () => {
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
       <div className='content'>
         <div className='content__top'>
           <Categories value={categoryId} onClickCategory={onClickCategory} />
-          <Sort />
+          <Sort sort={sort} reverseSort={reverseSort} />
         </div>
         <h2 className='content__title'>Все пиццы</h2>
         {status === 'error' ? (
