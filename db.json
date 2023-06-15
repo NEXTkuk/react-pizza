@@ -2,7 +2,7 @@
   "pizzas": [
     {
       "id": 0,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/0.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/0.jpg",
       "title": "Пепперони Фреш с перцем",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -12,7 +12,7 @@
     },
     {
       "id": 1,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/1.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/1.jpg",
       "title": "Сырная",
       "types": [0],
       "sizes": [26, 40],
@@ -22,7 +22,7 @@
     },
     {
       "id": 2,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/2.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/2.jpg",
       "title": "Цыпленок барбекю",
       "types": [0],
       "sizes": [26, 40],
@@ -32,7 +32,7 @@
     },
     {
       "id": 3,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/3.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/3.jpg",
       "title": "Кисло-сладкий цыпленок",
       "types": [0],
       "sizes": [26, 30, 40],
@@ -42,7 +42,7 @@
     },
     {
       "id": 4,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/4.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/4.jpg",
       "title": "Чизбургер-пицца",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -52,7 +52,7 @@
     },
     {
       "id": 5,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/5.jpg",
       "title": "Крэйзи пепперони",
       "types": [0],
       "sizes": [30, 40],
@@ -62,7 +62,7 @@
     },
     {
       "id": 6,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/6.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/6.jpg",
       "title": "Пепперони",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -72,7 +72,7 @@
     },
     {
       "id": 7,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/7.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/7.jpg",
       "title": "Маргарита",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -82,7 +82,7 @@
     },
     {
       "id": 8,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/8.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/8.jpg",
       "title": "Четыре сезона",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -92,7 +92,7 @@
     },
     {
       "id": 9,
-      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/9.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/NEXTkuk/react-pizza/main/src/assets/img/pizzas/9.jpg",
       "title": "Овощи и грибы",
       "types": [0, 1],
       "sizes": [26, 30, 40],
