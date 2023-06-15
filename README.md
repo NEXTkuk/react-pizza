@@ -1,5 +1,7 @@
 # React Pizza 🍕
 
+<img src="./assets/preview.png">
+
 # 🛠 Технологии:
 
 - **ReactJS 18**
