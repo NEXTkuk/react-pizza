@@ -1,6 +1,22 @@
 .root {
   position: relative;
-  //   left: -120px;
+
+  margin: 0 20px;
+
+  @media (max-width: 979px) {
+    margin-top: 30px;
+    order: 3;
+    width: 100%;
+  }
+
+  @media (max-width: 550px) {
+    order: 0;
+    margin: 30px 0;
+  }
+
+  @media (max-width: 1120px) {
+    // margin-top: 30px;
+  }
 }
 
 .input {
@@ -13,6 +29,14 @@
 
   &:focus {
     border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 1200px) {
+    width: 30vw;
+  }
+
+  @media (max-width: 979px) {
+    width: 100%;
   }
 }
 
