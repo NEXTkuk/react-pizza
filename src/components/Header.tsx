@@ -1,15 +1,26 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../redux/slices/cartSlice';
 
-import Search from './Search';
+import { Search } from './Search';
 import logoSvg from '../assets/img/pizza-logo.svg';
 
-function Header() {
+export const Header: React.FC = () => {
   const { items, totalPrice } = useSelector(selectCart);
   const location = useLocation();
+  const isMounted = React.useRef(false);
 
   const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
+
+  // Сохранение корзины в LocalStorage
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem('cart', json);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className='header'>
@@ -25,7 +36,7 @@ function Header() {
         </Link>
         {location.pathname === '/' && <Search />}
         <div className='header__cart'>
-          {location.pathname !== '/cart' && (
+          {location.pathname !== '/cart' && location.pathname !== '/order' && (
             <Link to='/cart' className='button button--cart'>
               <span>{totalPrice} ₽</span>
               <div className='button__delimiter'></div>
@@ -59,6 +70,4 @@ function Header() {
       </div>
     </div>
   );
-}
-
-export default Header;
+};

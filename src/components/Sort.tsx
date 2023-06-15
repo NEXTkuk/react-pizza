@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setSort, setReverseSort, SortPropertyEnum, Sort } from '../redux/slices/filterSlice';
+import { setSort, setReverseSort, SortPropertyEnum, Sort as SortType } from '../redux/slices/filterSlice';
 
 type SortList = {
   name: string;
@@ -14,11 +14,11 @@ export const list: SortList[] = [
 ];
 
 type SortPopupProps = {
-  sort: Sort;
+  sort: SortType;
   reverseSort: boolean;
 };
 
-const SortPopup: React.FC<SortPopupProps> = React.memo(({ sort, reverseSort }) => {
+export const Sort: React.FC<SortPopupProps> = React.memo(({ sort, reverseSort }) => {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
 
@@ -77,5 +77,3 @@ const SortPopup: React.FC<SortPopupProps> = React.memo(({ sort, reverseSort }) =
     </div>
   );
 });
-
-export default SortPopup;

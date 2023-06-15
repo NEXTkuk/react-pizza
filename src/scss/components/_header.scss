@@ -20,8 +20,17 @@
 
   &__logo {
     display: flex;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      transform: scale(0.9);
+
+      img {
+        transform: rotate(90deg);
+      }
+    }
 
     img {
+      transition: 0.3s;
       margin-right: 15px;
     }
 

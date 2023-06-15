@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+import { Header, NotFoundBlock } from './components';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
-import Header from './components/Header';
-import NotFoundBlock from './components/NotFoundBlock';
-
+import Order from './pages/Order';
 import App from './App';
-
 import { store } from './redux/store';
 
 const router = createBrowserRouter([
@@ -29,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         element: <Cart />,
+      },
+      {
+        path: 'order',
+        element: <Order />,
       },
       {
         path: '*',

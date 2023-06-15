@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CartItem from '../components/CartItem';
-import CartEmpty from '../components/CartEmpty';
+import { CartItem, CartEmpty } from '../components';
 import { clearItems, selectCart } from '../redux/slices/cartSlice';
 
 const Cart: React.FC = () => {
@@ -115,9 +114,11 @@ const Cart: React.FC = () => {
 
                 <span>Вернуться назад</span>
               </Link>
-              <div className='button pay-btn'>
-                <span>Оплатить сейчас</span>
-              </div>
+              <Link to='/order'>
+                <div onClick={onClickClear} className='button pay-btn'>
+                  <span>Оплатить сейчас</span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

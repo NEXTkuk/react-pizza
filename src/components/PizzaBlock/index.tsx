@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartItem, addItem, selectCart } from '../../redux/slices/cartSlice';
+import { CartItem, addItem, selectCartItemById } from '../../redux/slices/cartSlice';
 
 type PizzaBlockProps = {
   id: string;
@@ -13,10 +13,10 @@ type PizzaBlockProps = {
 
 const typesPizza = ['тонкое', 'традиционное'];
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, title, types, sizes, price }) => {
+export const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, title, types, sizes, price }) => {
   const dispatch = useDispatch();
-  // const cartItem = useSelector(selectCartItemById(id)); ДОБАВИТЬ!
-  const cartItem = useSelector((state: any) => state.cart.items.find((obj: any) => obj.id === id));
+  const cartItem = useSelector(selectCartItemById(id));
+
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
   const [pizzaCount, setPizzaCount] = React.useState(0);
@@ -29,7 +29,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, title, types, siz
       title,
       price,
       imageUrl,
-      type: typesPizza[activeSize],
+      type: typesPizza[activeType],
       size: sizes[activeSize],
       count: 0,
     };
@@ -68,7 +68,6 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, title, types, siz
               />
             </svg>
             <span>Добавить</span>
-            {/* {pizzaCount > 0 ? <i>{pizzaCount}</i> : <></>} */}
             {addedCount > 0 && <i>{addedCount}</i>}
           </button>
         </div>
@@ -76,5 +75,3 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, imageUrl, title, types, siz
     </div>
   );
 };
-
-export default PizzaBlock;

@@ -7,6 +7,12 @@
 
   &__image {
     width: 260px;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 50%;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
   }
 
   &__title {

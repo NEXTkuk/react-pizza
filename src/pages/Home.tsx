@@ -7,11 +7,7 @@ import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filte
 import { SearchPizzaParams, fetchPizzas } from '../redux/slices/pizzaSlice';
 import { useAppDispatch } from '../redux/store';
 
-import Categories from '../components/Categories';
-import Sort, { list } from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock';
-import LoadingBlock from '../components/PizzaBlock/LoadingBlock';
-import Pagination from '../components/Pagination';
+import { Categories, Sort, PizzaBlock, LoadingBlock, Pagination } from '../components';
 
 const Home: React.FC = () => {
   // const navigate = useNavigate();
@@ -29,6 +25,7 @@ const Home: React.FC = () => {
 
   const onClickCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
+    onChangePage(1);
   }, []);
 
   // Запрос на получения пицц
@@ -111,7 +108,11 @@ const Home: React.FC = () => {
         ) : (
           <div className='content__items'>{status === 'loading' ? skeletons : pizzasItems}</div>
         )}
-        {searchValue ? '' : <Pagination currentPage={currentPage} onChangePage={onChangePage} />}
+        {searchValue || (pizzasItems.length < 4 && categoryId !== 0) ? (
+          ''
+        ) : (
+          <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+        )}
       </div>
     </>
   );
