@@ -41,7 +41,7 @@ export const fetchPizzas = createAsyncThunk<Pizza[], Record<string, string>>(
   async (params) => {
     const { sortBy, order, category, search, currentPage } = params;
     const { data } = await axios.get<Pizza[]>(
-      `https://my-json-server.typicode.com/NEXTkuk/json-server/pizzas?_page=${currentPage}&_limit=4${category}${sortBy}${order}${search}`
+      `https://my-json-server.typicode.com/NEXTkuk/react-pizza/pizzas?_page=${currentPage}&_limit=4${category}${sortBy}${order}${search}`
     );
     return data;
   }
