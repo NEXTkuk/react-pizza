@@ -2,7 +2,7 @@
   "pizzas": [
     {
       "id": 0,
-      "imageUrl": "./src/assets/img/pizzas/0.jpeg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/0.jpeg",
       "title": "Пепперони Фреш с перцем",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -12,7 +12,7 @@
     },
     {
       "id": 1,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/2ffc31bb-132c-4c99-b894-53f7107a1441.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/1.jpeg",
       "title": "Сырная",
       "types": [0],
       "sizes": [26, 40],
@@ -22,7 +22,7 @@
     },
     {
       "id": 2,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/6652fec1-04df-49d8-8744-232f1032c44b.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/2.jpeg",
       "title": "Цыпленок барбекю",
       "types": [0],
       "sizes": [26, 40],
@@ -32,7 +32,7 @@
     },
     {
       "id": 3,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/af553bf5-3887-4501-b88e-8f0f55229429.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/3.jpeg",
       "title": "Кисло-сладкий цыпленок",
       "types": [0],
       "sizes": [26, 30, 40],
@@ -42,7 +42,7 @@
     },
     {
       "id": 4,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/4.jpeg",
       "title": "Чизбургер-пицца",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -52,7 +52,7 @@
     },
     {
       "id": 5,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/1e1a6e80-b3ba-4a44-b6b9-beae5b1fbf27.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/5.jpeg",
       "title": "Крэйзи пепперони",
       "types": [0],
       "sizes": [30, 40],
@@ -62,7 +62,7 @@
     },
     {
       "id": 6,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/d2e337e9-e07a-4199-9cc1-501cc44cb8f8.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/6.jpeg",
       "title": "Пепперони",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -72,7 +72,7 @@
     },
     {
       "id": 7,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/d48003cd-902c-420d-9f28-92d9dc5f73b4.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/7.jpeg",
       "title": "Маргарита",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -82,7 +82,7 @@
     },
     {
       "id": 8,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/ec29465e-606b-4a04-a03e-da3940d37e0e.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/8.jpeg",
       "title": "Четыре сезона",
       "types": [0, 1],
       "sizes": [26, 30, 40],
@@ -92,7 +92,7 @@
     },
     {
       "id": 9,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/30367198-f3bd-44ed-9314-6f717960da07.jpg",
+      "imageUrl": "https://github.com/NEXTkuk/react-pizza/blob/main/src/assets/img/pizzas/9.jpeg",
       "title": "Овощи и грибы",
       "types": [0, 1],
       "sizes": [26, 30, 40],
