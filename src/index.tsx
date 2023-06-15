@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom';
 
 import { Header, NotFoundBlock } from './components';
 import Home from './pages/Home';
@@ -10,7 +10,9 @@ import Order from './pages/Order';
 import App from './App';
 import { store } from './redux/store';
 
-const router = createBrowserRouter([
+// const router = createBrowserRouter([
+// GitHub Pages Fix
+const router = createHashRouter([
   {
     path: '/',
     element: <App />,
