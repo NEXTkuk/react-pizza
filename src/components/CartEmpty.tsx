@@ -7,7 +7,7 @@ export const CartEmpty: React.FC = () => (
   <div className='content'>
     <div className='cart cart--empty'>
       <h2>
-        Корзина пустая <span>😕</span>
+        Корзина пуста <span>😕</span>
       </h2>
       <p>
         Вероятней всего, вы не заказывали ещё пиццу.
