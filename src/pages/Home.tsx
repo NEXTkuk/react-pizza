@@ -1,22 +1,16 @@
 import React from 'react';
-// import qs from 'qs';
-// import { useNavigate } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { SearchPizzaParams, fetchPizzas } from '../redux/slices/pizzaSlice';
+import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 import { useAppDispatch } from '../redux/store';
 
 import { Categories, Sort, PizzaBlock, LoadingBlock, Pagination } from '../components';
 
 const Home: React.FC = () => {
-  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  // ПЕРЕДАЛАТЬ НА SELECT  PIZZA DATA 21 ВИДОС ?
-  const { items, status } = useSelector((state: any) => state.pizza);
+  const { items, status } = useSelector(selectPizzaData);
   const { categoryId, sort, currentPage, reverseSort, searchValue } = useSelector((state: any) => state.filter);
 
   const onChangePage = (number: number) => {
@@ -46,44 +40,15 @@ const Home: React.FC = () => {
     );
   };
 
-  // Если первого рендер был и параметры изменились, то вшиваем URL
-  // React.useEffect(() => {
-  //   if (isMounted.current) {
-  //     const queryString = qs.stringify({
-  //       sortProperty: sort.sortProperty,
-  //       categoryId,
-  //       currentPage,
-  //     });
-  //     // navigate(`?${queryString}`);
-  //   }
-  //   isMounted.current = true;
-  // }, [categoryId, sort.sortProperty, currentPage]);
-
-  // Если был первый рендер то проверяем URL параметры и сохраняем в Redux
-  // React.useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
-
-  //     const sort = list.find((obj) => obj.sortProperty === params.sortBy);
-
-  //     dispatch(
-  //       setFilters({
-  //         searchValue: params.search,
-  //         categoryId: Number(params.category),
-  //         currentPage: Number(params.currentPage),
-  //         sort: sort || list[0],
-  //         // ...params,
-  //         // sort,
-  //       })
-  //     );
-  //     isSearch.current = true;
-  //   }
-  // }, []);
-
   // Если был первый рендер, то запрашиваем пиццы
   React.useEffect(() => {
-    getPizzas();
-    // isSearch.current = false;
+    window.scrollTo(0, 0);
+
+    if (isMounted.current) {
+      getPizzas();
+    }
+
+    isMounted.current = true;
   }, [categoryId, sort.sortProperty, reverseSort, currentPage, searchValue]);
 
   const pizzasItems = items

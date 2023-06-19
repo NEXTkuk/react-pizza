@@ -48,6 +48,8 @@ const filterSlice = createSlice({
       state.sort = action.payload.sort;
       state.categoryId = Number(action.payload.categoryId);
       state.currentPage = Number(action.payload.currentPage);
+      state.searchValue = action.payload.searchValue;
+      state.reverseSort = action.payload.reverseSort;
     },
     setReverseSort(state, action: PayloadAction<boolean>) {
       state.reverseSort = action.payload;
