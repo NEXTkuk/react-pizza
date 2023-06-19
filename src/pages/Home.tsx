@@ -42,12 +42,12 @@ const Home: React.FC = () => {
 
   // Если был первый рендер, то запрашиваем пиццы
   React.useEffect(() => {
-    if (isMounted.current) {
-      window.scrollTo(0, 0);
-      getPizzas();
-    }
+    // if (isMounted.current) {
+    window.scrollTo(0, 0);
+    getPizzas();
+    // }
 
-    isMounted.current = true;
+    // isMounted.current = true;
   }, [categoryId, sort.sortProperty, reverseSort, currentPage, searchValue]);
 
   const pizzasItems = items
