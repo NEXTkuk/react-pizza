@@ -42,9 +42,8 @@ const Home: React.FC = () => {
 
   // Если был первый рендер, то запрашиваем пиццы
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-
     if (isMounted.current) {
+      window.scrollTo(0, 0);
       getPizzas();
     }
 
