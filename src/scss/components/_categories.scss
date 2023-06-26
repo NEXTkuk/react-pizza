@@ -28,6 +28,10 @@
         background-color: #282828;
         color: #fff;
       }
+
+      @media (max-width: 967px) {
+        margin-bottom: 10px;
+      }
     }
   }
 }
