@@ -31,6 +31,11 @@
       }
     }
 
+    &:active {
+      transition: 0.1s ease-in-out;
+      transform: scale(0.85);
+    }
+
     img {
       transition: 0.3s;
       margin-right: 15px;

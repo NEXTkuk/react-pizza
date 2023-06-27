@@ -2,11 +2,14 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../redux/slices/cartSlice';
+import { setCategoryId, setSort, setReverseSort, SortPropertyEnum, setCurrentPage } from '../redux/slices/filterSlice';
+import { useAppDispatch } from '../redux/store';
 
 import { Search } from './Search';
 import logoSvg from '../assets/img/pizza-logo.svg';
 
 export const Header: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { items, totalPrice } = useSelector(selectCart);
   const location = useLocation();
   const isMounted = React.useRef(false);
@@ -22,11 +25,18 @@ export const Header: React.FC = () => {
     isMounted.current = true;
   }, [items]);
 
+  const onClickLogo = () => {
+    dispatch(setCategoryId(0));
+    dispatch(setReverseSort(false));
+    dispatch(setSort({ name: 'популярности', sortProperty: SortPropertyEnum.RATING }));
+    dispatch(setCurrentPage(1));
+  };
+
   return (
     <div className='header'>
       <div className='container'>
         <Link to='/'>
-          <div className='header__logo'>
+          <div className='header__logo' onClick={onClickLogo}>
             <img width='38' src={logoSvg} alt='Pizza logo' />
             <div>
               <h1>React Pizza</h1>
